@@ -34,14 +34,14 @@ public class GreetingsController {
   @PostMapping("/memes/")
   public ResponseEntity<ResponseDto> postMeme(@RequestBody GreetingsEntity greetingsEntity) {
 
-    if(greetingsService.getMemeByUrl(greetingsEntity.getUrl()) != null &&
+    if(greetingsEntity.getName() == null || greetingsEntity.getUrl() == null || greetingsEntity.getCaption() == null) {
+
+      return ResponseEntity.status(400).body(null);   //error 2 solve
+
+    } else if(greetingsService.getMemeByUrl(greetingsEntity.getUrl()) != null &&
        greetingsService.getMemeByCaption(greetingsEntity.getCaption()) != null) {
 
       return ResponseEntity.status(409).body(new ResponseDto());  //for same payload  //error 3 solve
-
-    } if(greetingsEntity.getName() == null || greetingsEntity.getUrl() == null || greetingsEntity.getCaption() == null) {
-
-      return ResponseEntity.status(400).body(null);   //error 2 solve
 
     } else {
 
