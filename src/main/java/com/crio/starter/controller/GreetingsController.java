@@ -41,7 +41,7 @@ public class GreetingsController {
 
     } if(greetingsEntity.getName() == null || greetingsEntity.getUrl() == null || greetingsEntity.getCaption() == null) {
 
-      return ResponseEntity.status(400).body(null);   //error 2 solve
+      return ResponseEntity.status(400).body(new ResponseDto());   //error 2 solve
 
     } else {
 
@@ -64,7 +64,7 @@ public class GreetingsController {
     if(greetingsEntity != null) {
     return ResponseEntity.ok(greetingsEntity);
     } else {
-      return ResponseEntity.status(404).body(null);
+      return ResponseEntity.status(404).body(new GreetingsEntity());
     }
 
   }
