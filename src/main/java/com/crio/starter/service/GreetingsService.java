@@ -38,7 +38,7 @@ public class GreetingsService {
 
     greetingsEntities = greetingsRepository.findAll();
 
-    if(greetingsEntities.size() < 100) {
+    if(greetingsEntities.size() <= 100) {
       return greetingsEntities;
     } else {
       List<GreetingsEntity> list = new ArrayList<>();
@@ -56,6 +56,10 @@ public class GreetingsService {
   }
 
   
+  public GreetingsEntity getMemeByName(String name){
+    return greetingsRepository.findByName(name);
+  }
+
   public GreetingsEntity getMemeByUrl(String url){
     return greetingsRepository.findByUrl(url);
   }
