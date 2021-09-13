@@ -42,7 +42,7 @@ public class GreetingsController {
 
     } else if(greetingsEntity == null ||greetingsEntity.getName() == null || greetingsEntity.getUrl() == null || greetingsEntity.getCaption() == null) {
 
-      return ResponseEntity.status(200).body(new ResponseDto());   //error 2
+      return ResponseEntity.status(400).body(new ResponseDto());   //error 2
 
     } else
     {
