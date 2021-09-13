@@ -36,14 +36,8 @@ public class GreetingsController {
     if(greetingsService.getMemeByUrl(greetingsEntity.getUrl()) != null &&
        greetingsService.getMemeByCaption(greetingsEntity.getCaption()) != null) {
 
-      return ResponseEntity.status(409).body(new ResponseDto());  //for same payload  //error 3
-
-    } else if(greetingsEntity.getName() == null || greetingsEntity.getUrl() == null || greetingsEntity.getCaption() == null) {
-
-      return ResponseEntity.status(200).body(new ResponseDto());   //error 2
-
-    } else
-    {
+      return ResponseEntity.status(409).body(new ResponseDto());  //for same payload
+    } else {
 
       ResponseDto responseDto = greetingsService.postMeme(greetingsEntity);
       return ResponseEntity.ok(responseDto);                     //post the meme
@@ -57,7 +51,7 @@ public class GreetingsController {
     return ResponseEntity.ok(greetingsEntities);
   }
   
-  @GetMapping("/memes/")//error 1
+  @GetMapping("/memes")
   public ResponseEntity<GreetingsEntity> getMemeById(@RequestParam Long id) {
     GreetingsEntity greetingsEntity = greetingsService.getMemeById(id);
 
