@@ -38,7 +38,7 @@ public class GreetingsService {
 
     greetingsEntities = greetingsRepository.findAll();
 
-    if(greetingsEntities.size() < 100) {
+    if(greetingsEntities.size() <= 100) {
       return greetingsEntities;
     } else {
       List<GreetingsEntity> list = new ArrayList<>();
