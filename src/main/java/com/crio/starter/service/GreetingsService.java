@@ -56,6 +56,10 @@ public class GreetingsService {
   }
 
   
+  public GreetingsEntity getMemeByName(String name){
+    return greetingsRepository.findByName(name);
+  }
+
   public GreetingsEntity getMemeByUrl(String url){
     return greetingsRepository.findByUrl(url);
   }

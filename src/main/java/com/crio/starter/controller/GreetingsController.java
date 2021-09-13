@@ -13,6 +13,7 @@ import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,11 +35,12 @@ public class GreetingsController {
   public ResponseEntity<ResponseDto> postMeme(@RequestBody GreetingsEntity greetingsEntity) {
 
     if(greetingsService.getMemeByUrl(greetingsEntity.getUrl()) != null &&
-       greetingsService.getMemeByCaption(greetingsEntity.getCaption()) != null) {
+       greetingsService.getMemeByCaption(greetingsEntity.getCaption()) != null &&
+       greetingsService.getMemeByName(greetingsEntity.getName()) != null ) {
 
       return ResponseEntity.status(409).body(new ResponseDto());  //for same payload  //error 3
 
-    } else if(greetingsEntity.getName() == null || greetingsEntity.getUrl() == null || greetingsEntity.getCaption() == null) {
+    } else if(greetingsEntity == null ||greetingsEntity.getName() == null || greetingsEntity.getUrl() == null || greetingsEntity.getCaption() == null) {
 
       return ResponseEntity.status(200).body(new ResponseDto());   //error 2
 
@@ -57,8 +59,8 @@ public class GreetingsController {
     return ResponseEntity.ok(greetingsEntities);
   }
   
-  @GetMapping("/memes/")//error 1
-  public ResponseEntity<GreetingsEntity> getMemeById(@RequestParam Long id) {
+  @GetMapping("/memes/{id}")//error 1
+  public ResponseEntity<GreetingsEntity> getMemeById(@PathVariable("id") Long id) {
     GreetingsEntity greetingsEntity = greetingsService.getMemeById(id);
 
     if(greetingsEntity != null) {
