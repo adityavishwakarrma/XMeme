@@ -40,7 +40,7 @@ class GreetingsServiceTest {
   private GreetingsEntity getGreeting(String id, String message) {
     GreetingsEntity greetingsEntity = new GreetingsEntity();
     greetingsEntity.setExtId(id);
-    greetingsEntity.setMessage(message);
+    greetingsEntity.setCaption(message);
     return greetingsEntity;
   }
 }
