@@ -33,10 +33,10 @@ public class GreetingsService {
   public List<GreetingsEntity> getMemes(){
     List<GreetingsEntity> greetingsEntities = greetingsRepository.findAll();
     if(greetingsEntities.size() <=100){
-      return greetingsEntities;
+      return greetingsEntities;             //TEST 7
     } else {
       List<GreetingsEntity> list = new ArrayList<>();
-      for(int i=0; i<100; i++){
+      for(int i=0; i<100; i++){             //TEST 8 FAIL
         list.add(greetingsEntities.get(i));
       }
       return list;
