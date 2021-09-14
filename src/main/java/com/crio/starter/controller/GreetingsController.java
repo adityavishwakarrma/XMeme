@@ -3,6 +3,8 @@ package com.crio.starter.controller;
 import com.crio.starter.data.GreetingsEntity;
 import com.crio.starter.exchange.ResponseDto;
 import com.crio.starter.service.GreetingsService;
+import com.rabbitmq.client.RpcClient.Response;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,12 +35,12 @@ public class GreetingsController {
     String url =  greetingsEntity.getUrl();
     String caption = greetingsEntity.getCaption();
 
-    if(greetingsEntity == null) {
-      return ResponseEntity.status(200).body(null);
-
-    } else if(greetingsService.findByName(name) != null || greetingsService.findByUrl(url) != null || greetingsService.findByCaption(caption) != null) {
+    if (greetingsService.findByName(name) != null || greetingsService.findByUrl(url) != null
+        || greetingsService.findByCaption(caption) != null) {
       return ResponseEntity.status(409).body(null);
 
+    } else if( name==null && url==null && caption==null) {
+      return ResponseEntity.status(200).body(null);
     } else {
       ResponseDto response = greetingsService.postMeme(greetingsEntity);
       return ResponseEntity.ok().body(response);
