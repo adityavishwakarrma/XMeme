@@ -27,4 +27,18 @@ public class GreetingsService {
     greetingsRepository.save(greetingsEntity);
     return new ResponseDto(greetingsEntity.getId());
   }
+
+
+  public GreetingsEntity findById(long id){
+    return greetingsRepository.findById(id);
+  }
+  public GreetingsEntity findByName(String name){
+    return greetingsRepository.findByName(name);
+  }
+  public GreetingsEntity findByUrl(String url){
+    return greetingsRepository.findByUrl(url);
+  }
+  public GreetingsEntity findByCaption(String caption){
+    return greetingsRepository.findByCaption(caption);
+  }
 }
