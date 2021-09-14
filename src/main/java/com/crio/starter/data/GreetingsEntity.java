@@ -1,3 +1,4 @@
+
 package com.crio.starter.data;
 
 import lombok.Data;
@@ -13,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class GreetingsEntity {
 
   @JsonIgnore
-  private long extId;
+  private long id;
 
   private String name;
 
