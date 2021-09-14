@@ -5,9 +5,12 @@ import com.crio.starter.exchange.ResponseDto;
 import com.crio.starter.repository.GreetingsRepository;
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.support.Repositories;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,6 +29,19 @@ public class GreetingsService {
     greetingsEntity.setId(counter.incrementAndGet());
     greetingsRepository.save(greetingsEntity);
     return new ResponseDto(greetingsEntity.getId());
+  }
+
+  public List<GreetingsEntity> getMemes(){
+    List<GreetingsEntity> greetingsEntities = greetingsRepository.findAll();
+    if(greetingsEntities.size() <=100){
+      return greetingsEntities;
+    } else {
+      List<GreetingsEntity> list = new ArrayList<>();
+      for(int i=0; i<100; i++){
+        list.add(greetingsEntities.get(i));
+      }
+      return list;
+    }
   }
 
 

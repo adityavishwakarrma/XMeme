@@ -6,6 +6,10 @@ import com.crio.starter.service.GreetingsService;
 import com.rabbitmq.client.RpcClient.Response;
 
 import lombok.RequiredArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +30,6 @@ public class GreetingsController {
     return greetingsService.getMessage(messageId);
   }
 
-  
-
   @PostMapping("/memes/")
   public ResponseEntity<ResponseDto> postMeme(@RequestBody GreetingsEntity greetingsEntity) {
 
@@ -39,12 +41,17 @@ public class GreetingsController {
         || greetingsService.findByCaption(caption) != null) {
       return ResponseEntity.status(409).body(null);
 
-    } else if( name==null && url==null && caption==null) {
-      return ResponseEntity.status(200).body(null);
     } else {
       ResponseDto response = greetingsService.postMeme(greetingsEntity);
       return ResponseEntity.ok().body(response);
     }
+  }
+
+  @GetMapping("/memes/")
+  public ResponseEntity<List<GreetingsEntity>> getMemes(){
+    List<GreetingsEntity> greetingsEntities = new ArrayList<>();
+    greetingsEntities = greetingsService.getMemes();
+    return ResponseEntity.ok().body(greetingsEntities);
   }
 
   // @GetMapping("/memes/{id}")
