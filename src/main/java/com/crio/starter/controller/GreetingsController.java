@@ -30,12 +30,16 @@ public class GreetingsController {
     return greetingsService.getMessage(messageId);
   }
 
-  @PostMapping("/memes/")
+  @PostMapping("/memes/")//test 2
   public ResponseEntity<ResponseDto> postMeme(@RequestBody GreetingsEntity greetingsEntity) {
 
     String name = greetingsEntity.getName();
     String url =  greetingsEntity.getUrl();
     String caption = greetingsEntity.getCaption();
+
+    if(greetingsEntity == null) {
+      return ResponseEntity.badRequest().body(null);
+    }
 
     if (greetingsService.findByName(name) != null || greetingsService.findByUrl(url) != null
         || greetingsService.findByCaption(caption) != null) {
@@ -47,14 +51,14 @@ public class GreetingsController {
     }
   }
 
-  @GetMapping("/memes/")
+  @GetMapping("/memes/") //test 1
   public ResponseEntity<List<GreetingsEntity>> getMemes(){
     List<GreetingsEntity> greetingsEntities = new ArrayList<>();
     greetingsEntities = greetingsService.getMemes();
-    return ResponseEntity.ok().body(greetingsEntities);
+    return ResponseEntity.ok().body(greetingsEntities); 
   }
 
-  // @GetMapping("/memes/{id}")
+  // @GetMapping("/memes/{id}") //test 3
   // public ResponseEntity<GreetingsEntity> getMeme(@PathVariable("id") Long id) {
   //   GreetingsEntity greetingsEntity = greetingsService.findById(id);
   //   if(greetingsEntity != null) {
