@@ -33,8 +33,8 @@ public class GreetingsController {
     String url =  greetingsEntity.getUrl();
     String caption = greetingsEntity.getCaption();
 
-    if( greetingsEntity == null || name == null || url == null || caption == null) {
-      return ResponseEntity.ok(null);
+    if(greetingsEntity == null) {
+      return ResponseEntity.status(200).body(null);
 
     } else if(greetingsService.findByName(name) != null || greetingsService.findByUrl(url) != null || greetingsService.findByCaption(caption) != null) {
       return ResponseEntity.status(409).body(null);
