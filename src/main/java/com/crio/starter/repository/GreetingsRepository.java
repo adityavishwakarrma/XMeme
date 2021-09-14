@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface GreetingsRepository extends MongoRepository<GreetingsEntity, Long> {
   <S extends GreetingsEntity> S save(S entity);
-  List<GreetingsEntity> findAll();
+  // List<GreetingsEntity> findAll();
   GreetingsEntity findById(long id);
   GreetingsEntity findByName(String name);
   GreetingsEntity findByUrl(String url); 
