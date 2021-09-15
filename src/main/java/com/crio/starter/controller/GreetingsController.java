@@ -47,14 +47,9 @@ public class GreetingsController {
     }
   }
 
-  @GetMapping("/memes/{id}")
-  public ResponseEntity<List<GreetingsEntity>> getMemes(@PathVariable("id") long id){
+  @GetMapping("/memes/")
+  public ResponseEntity<List<GreetingsEntity>> getMemes(){
     List<GreetingsEntity> greetingsEntities = new ArrayList<>();
-
-    if(id != 0L){
-      greetingsEntities.add(greetingsService.findById(id));
-      return ResponseEntity.ok(greetingsEntities);
-    }
 
     greetingsEntities = greetingsService.getMemes();
 
