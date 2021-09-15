@@ -35,6 +35,7 @@ public class GreetingsController {
     String name = greetingsEntity.getName();
     String url =  greetingsEntity.getUrl();
     String caption = greetingsEntity.getCaption();
+
     if( name==null && url==null && caption==null){
       return ResponseEntity.status(400).body(null);
     }
@@ -49,9 +50,7 @@ public class GreetingsController {
 
   @GetMapping("/memes/")
   public ResponseEntity<List<GreetingsEntity>> getMemes(){
-    List<GreetingsEntity> greetingsEntities = new ArrayList<>();
-
-    greetingsEntities = greetingsService.getMemes();
+    List<GreetingsEntity> greetingsEntities = greetingsService.getMemes();
 
     if (greetingsEntities == null) {
       return ResponseEntity.status(200).body(null);   //When run with empty database, get calls should return success, and response should be empty
