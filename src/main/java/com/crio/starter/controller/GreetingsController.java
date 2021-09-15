@@ -11,6 +11,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,9 +47,16 @@ public class GreetingsController {
     }
   }
 
-  @GetMapping("/memes/")
-  public ResponseEntity<List<GreetingsEntity>> getMemes(){
-    List<GreetingsEntity> greetingsEntities = greetingsService.getMemes();
+  @GetMapping("/memes/{id}")
+  public ResponseEntity<List<GreetingsEntity>> getMemes(@PathVariable("id") long id){
+    List<GreetingsEntity> greetingsEntities = new ArrayList<>();
+
+    if(id != 0L){
+      greetingsEntities.add(greetingsService.findById(id));
+      return ResponseEntity.ok(greetingsEntities);
+    }
+
+    greetingsEntities = greetingsService.getMemes();
 
     if (greetingsEntities == null) {
       return ResponseEntity.status(200).body(null);   //When run with empty database, get calls should return success, and response should be empty
