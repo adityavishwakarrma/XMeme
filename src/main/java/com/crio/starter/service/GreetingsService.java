@@ -24,10 +24,9 @@ public class GreetingsService {
   private final AtomicLong counter = new AtomicLong();
 
   public ResponseDto postMeme(GreetingsEntity greetingsEntity) {
-    long id = counter.incrementAndGet();
-    greetingsEntity.setId(id);
+    greetingsEntity.setId(counter.incrementAndGet());
     greetingsRepository.save(greetingsEntity);
-    return new ResponseDto(id);
+    return new ResponseDto(greetingsEntity.getId());
   }
 
   public List<GreetingsEntity> getMemes(){
