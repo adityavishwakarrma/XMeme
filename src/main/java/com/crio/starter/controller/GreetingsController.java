@@ -69,6 +69,12 @@ public class GreetingsController {
 
   @GetMapping("/memes/{id}")
   public ResponseEntity<GreetingsEntity> getMeme(@PathVariable long id){
+
+    
+    if(greetingsService.getMemes().size() == 0) {
+      return ResponseEntity.status(200).body(null);
+    }
+
     GreetingsEntity greetingsEntity = greetingsService.findById(id);
     if(greetingsEntity == null) {
       return ResponseEntity.status(404).body(null);
