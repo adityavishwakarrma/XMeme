@@ -24,10 +24,10 @@ public class GreetingsController {
 
   private final GreetingsService greetingsService;
 
-  @GetMapping("/say-hello")
-  public ResponseDto sayHello(@RequestParam long id) {
-    return greetingsService.getMessage(id);
-  }
+  // @GetMapping("/say-hello")
+  // public ResponseDto sayHello(@RequestParam long id) {
+  //   return greetingsService.getMessage(id);
+  // }
 
 
   @PostMapping("/memes/")

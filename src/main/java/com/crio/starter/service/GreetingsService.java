@@ -17,9 +17,9 @@ public class GreetingsService {
 
   private final GreetingsRepository greetingsRepository;
 
-  public ResponseDto getMessage(long id) {
-    return new ResponseDto(greetingsRepository.findById(id).getId());
-  }
+  // public ResponseDto getMessage(long id) {
+  //   return new ResponseDto(greetingsRepository.findById(id).getId());
+  // }
 
   private final AtomicLong counter = new AtomicLong();
 
