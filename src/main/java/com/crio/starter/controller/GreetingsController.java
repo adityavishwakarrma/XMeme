@@ -50,7 +50,7 @@ public class GreetingsController {
   public ResponseEntity<List<GreetingsEntity>> getMemes(){
     List<GreetingsEntity> greetingsEntities = greetingsService.getMemes();
 
-    if (greetingsEntities == null) {
+    if (greetingsEntities == null || greetingsEntities.size() == 0) {
       return ResponseEntity.status(200).body(null);   //When run with empty database, get calls should return success, and response should be empty
 
     } else if(greetingsEntities.size() <=100) {       //Insert 50 MEMEs and try accessing them to confirm that all of them are returned back
