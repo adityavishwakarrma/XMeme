@@ -17,9 +17,9 @@ public class GreetingsService {
 
   private final GreetingsRepository greetingsRepository;
 
-  // public ResponseDto getMessage(long id) {
-  //   return new ResponseDto(greetingsRepository.findById(id).getId());
-  // }
+  public ResponseDto getMessage(long id) {
+    return new ResponseDto(greetingsRepository.findById(id).getId());
+  }
 
   private final AtomicLong counter = new AtomicLong();
 
@@ -34,10 +34,6 @@ public class GreetingsService {
     return greetingsRepository.findAll();
   }
 
-
-  // public GreetingsEntity findById(long id){
-  //   return greetingsRepository.findById(id);
-  // }
 
   public GreetingsEntity findByName(String name) {
     return greetingsRepository.findByName(name);

@@ -11,7 +11,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,10 +22,10 @@ public class GreetingsController {
 
   private final GreetingsService greetingsService;
 
-  // @GetMapping("/say-hello")
-  // public ResponseDto sayHello(@RequestParam long id) {
-  //   return greetingsService.getMessage(id);
-  // }
+  @GetMapping("/say-hello")
+  public ResponseDto sayHello(@RequestParam long id) {
+    return greetingsService.getMessage(id);
+  }
 
 
   @PostMapping("/memes/")
@@ -35,7 +34,6 @@ public class GreetingsController {
     String name = greetingsEntity.getName();
     String url =  greetingsEntity.getUrl();
     String caption = greetingsEntity.getCaption();
-
     if( name==null && url==null && caption==null){
       return ResponseEntity.status(400).body(null);
     }
@@ -49,7 +47,7 @@ public class GreetingsController {
   }
 
   @GetMapping("/memes/")
-  public ResponseEntity<List<GreetingsEntity>> getMemes() {
+  public ResponseEntity<List<GreetingsEntity>> getMemes(){
     List<GreetingsEntity> greetingsEntities = greetingsService.getMemes();
 
     if (greetingsEntities == null) {
@@ -67,17 +65,6 @@ public class GreetingsController {
     }
 
   }
-
-  // @GetMapping("/memes/{id}")
-  // public ResponseEntity<GreetingsEntity> getMeme(@PathVariable("id") long id) {
-  //   GreetingsEntity greetingsEntity = greetingsService.findById(id);
-  //   if(greetingsEntity != null ) {
-  //     return ResponseEntity.ok(greetingsEntity);
-  //   } else {
-  //     return ResponseEntity.status(404).body(null);
-  //   }
- 
-  // }
 
 
 }
