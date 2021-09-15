@@ -1,8 +1,13 @@
 package com.crio.starter.service;
 
+import com.crio.starter.data.GreetingsEntity;
 import com.crio.starter.exchange.ResponseDto;
 import com.crio.starter.repository.GreetingsRepository;
+
 import lombok.RequiredArgsConstructor;
+
+import java.util.concurrent.atomic.AtomicLong;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,5 +18,25 @@ public class GreetingsService {
 
   public ResponseDto getMessage(long id) {
     return new ResponseDto(greetingsRepository.findById(id).getId());
+  }
+
+  private final AtomicLong counter = new AtomicLong();
+
+  public ResponseDto postMeme(GreetingsEntity greetingsEntity) {
+    long id = counter.incrementAndGet();
+    greetingsEntity.setId(id);
+    greetingsRepository.save(greetingsEntity);
+    return new ResponseDto(id);
+  }
+
+
+  public GreetingsEntity findByName(String name) {
+    return greetingsRepository.findByName(name);
+  }
+  public GreetingsEntity findByUrl(String url) {
+    return greetingsRepository.findByUrl(url);
+  }
+  public GreetingsEntity findByCaption(String caption) {
+    return greetingsRepository.findByCaption(caption);
   }
 }
