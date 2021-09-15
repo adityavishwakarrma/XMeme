@@ -35,11 +35,11 @@ public class GreetingsController {
     String url =  greetingsEntity.getUrl();
     String caption = greetingsEntity.getCaption();
     if( name==null && url==null && caption==null){
-      return ResponseEntity.status(400).body(null);
+      return ResponseEntity.status(400).body(null);  //Verify that API doesnt accept empty data in POST call SUCCESS
     }
 
     if (greetingsService.findByName(name) != null || greetingsService.findByUrl(url) != null || greetingsService.findByCaption(caption) != null) {
-      return ResponseEntity.status(409).body(null);     //duplicate data sends 409 status
+      return ResponseEntity.status(409).body(null);     //duplicate data sends 409 status SUCCESS
     } else {
     ResponseDto response = greetingsService.postMeme(greetingsEntity);
     return ResponseEntity.ok().body(response);          //post a meme
@@ -50,7 +50,7 @@ public class GreetingsController {
   public ResponseEntity<List<GreetingsEntity>> getMemes(){
     List<GreetingsEntity> greetingsEntities = greetingsService.getMemes();
 
-    if (greetingsEntities == null || greetingsEntities.size() == 0) {
+    if (greetingsEntities.size() == 0) {
       return ResponseEntity.status(200).body(null);   //When run with empty database, get calls should return success, and response should be empty
 
     } else if(greetingsEntities.size() <=100) {       //Insert 50 MEMEs and try accessing them to confirm that all of them are returned back
