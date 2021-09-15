@@ -30,6 +30,9 @@ public class GreetingsController {
     String name = greetingsEntity.getName();
     String url =  greetingsEntity.getUrl();
     String caption = greetingsEntity.getCaption();
+    if(name==null && url==null && caption==null){
+      return ResponseEntity.status(400).body(null);
+    }
 
     if (greetingsService.findByName(name) != null || greetingsService.findByUrl(url) != null || greetingsService.findByCaption(caption) != null) {
       return ResponseEntity.status(409).body(null);     //duplicate data sends 409 status
