@@ -6,7 +6,6 @@ import com.crio.starter.service.GreetingsService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
