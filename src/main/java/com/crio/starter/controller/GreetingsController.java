@@ -40,7 +40,7 @@ public class GreetingsController {
       return ResponseEntity.status(400).body(null);  //Verify that API doesnt accept empty data in POST call SUCCESS
     }
 
-    if (greetingsService.findByName(name) != null && greetingsService.findByUrl(url) != null && greetingsService.findByCaption(caption) != null) {
+    if (greetingsService.findByName(name) != null && greetingsService.findByUrl(url) != null || greetingsService.findByCaption(caption) != null) {
       return ResponseEntity.status(409).body(null);     //duplicate data sends 409 status SUCCESS
     } else {
     ResponseDto response = greetingsService.postMeme(greetingsEntity);
