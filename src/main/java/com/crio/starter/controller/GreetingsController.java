@@ -6,6 +6,7 @@ import com.crio.starter.service.GreetingsService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,7 @@ public class GreetingsController {
   }
 
   @GetMapping("/memes/")
-  public ResponseEntity<List<GreetingsEntity>> getMemes(){
+  public ResponseEntity<List<GreetingsEntity>> getMemes() {
     List<GreetingsEntity> greetingsEntities = greetingsService.getMemes();
 
     if (greetingsEntities == null) {
@@ -66,6 +67,17 @@ public class GreetingsController {
       return ResponseEntity.ok(greetingsEntities);
     }
 
+  }
+
+  @GetMapping("/memes/{id}")
+  public ResponseEntity<GreetingsEntity> getMeme(@PathVariable("id") long id) {
+    GreetingsEntity greetingsEntity = greetingsService.findById(id);
+    if(greetingsEntity != null ) {
+      return ResponseEntity.ok(greetingsEntity);
+    } else {
+      return ResponseEntity.status(404).body(null);
+    }
+ 
   }
 
 
