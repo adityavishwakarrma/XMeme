@@ -4,6 +4,10 @@ import com.crio.starter.data.GreetingsEntity;
 import com.crio.starter.exchange.ResponseDto;
 import com.crio.starter.service.GreetingsService;
 import lombok.RequiredArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +34,7 @@ public class GreetingsController {
     String name = greetingsEntity.getName();
     String url =  greetingsEntity.getUrl();
     String caption = greetingsEntity.getCaption();
-    if(name==null && url==null && caption==null){
+    if( name==null && url==null && caption==null){
       return ResponseEntity.status(400).body(null);
     }
 
@@ -40,6 +44,26 @@ public class GreetingsController {
     ResponseDto response = greetingsService.postMeme(greetingsEntity);
     return ResponseEntity.ok().body(response);          //post a meme
     }
+  }
+
+  @GetMapping("/memes/")
+  public ResponseEntity<List<GreetingsEntity>> getMemes(){
+    List<GreetingsEntity> greetingsEntities = greetingsService.getMemes();
+
+    if (greetingsEntities == null) {
+      return ResponseEntity.status(200).body(null);   //When run with empty database, get calls should return success, and response should be empty
+
+    } else if(greetingsEntities.size() <=100) {       //Insert 50 MEMEs and try accessing them to confirm that all of them are returned back
+      return ResponseEntity.ok(greetingsEntities);
+
+    } else {                                          //Post more than 100 MEME, make a GET call and ensure that it returns only latest 100 MEME
+      List<GreetingsEntity> list = new ArrayList<>();
+      for(int i=0; i<100; i++){
+        list.add(greetingsEntities.get(i));
+      }
+      return ResponseEntity.ok(greetingsEntities);
+    }
+
   }
 
 

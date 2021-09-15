@@ -6,6 +6,7 @@ import com.crio.starter.repository.GreetingsRepository;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.stereotype.Service;
@@ -27,6 +28,10 @@ public class GreetingsService {
     greetingsEntity.setId(id);
     greetingsRepository.save(greetingsEntity);
     return new ResponseDto(id);
+  }
+
+  public List<GreetingsEntity> getMemes(){
+    return greetingsRepository.findAll();
   }
 
 
