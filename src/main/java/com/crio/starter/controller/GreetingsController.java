@@ -69,16 +69,16 @@ public class GreetingsController {
 
   }
 
-  @GetMapping("/memes/{id}")
-  public ResponseEntity<GreetingsEntity> getMeme(@PathVariable("id") long id) {
-    GreetingsEntity greetingsEntity = greetingsService.findById(id);
-    if(greetingsEntity != null ) {
-      return ResponseEntity.ok(greetingsEntity);
-    } else {
-      return ResponseEntity.status(404).body(null);
-    }
+  // @GetMapping("/memes/{id}")
+  // public ResponseEntity<GreetingsEntity> getMeme(@PathVariable("id") long id) {
+  //   GreetingsEntity greetingsEntity = greetingsService.findById(id);
+  //   if(greetingsEntity != null ) {
+  //     return ResponseEntity.ok(greetingsEntity);
+  //   } else {
+  //     return ResponseEntity.status(404).body(null);
+  //   }
  
-  }
+  // }
 
 
 }
