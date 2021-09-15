@@ -1,11 +1,7 @@
-
 package com.crio.starter.data;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
@@ -13,13 +9,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 public class GreetingsEntity {
 
-  @JsonIgnore
-  private long id;
+  private String extId;
 
-  private String name;
-
-  private String url;
-
-  private String caption;
+  private String message;
 
 }
