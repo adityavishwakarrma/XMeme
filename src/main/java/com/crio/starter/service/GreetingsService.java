@@ -35,6 +35,9 @@ public class GreetingsService {
   }
 
 
+  public GreetingsEntity findById(long id) {
+    return greetingsRepository.findById(id);
+  }
   public GreetingsEntity findByName(String name) {
     return greetingsRepository.findByName(name);
   }
