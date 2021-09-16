@@ -14,8 +14,8 @@ public interface GreetingsRepository extends MongoRepository<GreetingsEntity, St
 
   GreetingsEntity findByName(String name);
 
-  List<GreetingsEntity> findByUrl(String url);
+  GreetingsEntity findByUrl(String url);
  
- GreetingsEntity findByCaption(String caption);
+  GreetingsEntity findByCaption(String caption);
 
 }

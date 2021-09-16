@@ -33,14 +33,13 @@ public class GreetingsService {
   }
 
   public boolean isDuplicate(String name, String url, String caption) {
-    // try { 
-      if(findByName(name)!=null && findByUrl(url)!=null && findByCaption(caption)!=null)
+    List<GreetingsEntity> greetingsEntities = greetingsRepository.findAll();
+    for(GreetingsEntity greetingsEntity : greetingsEntities){
+      if(greetingsEntity.getName()==name && greetingsEntity.getUrl()==url && greetingsEntity.getCaption()==caption){
         return true;
-      else return false;
-    // } catch(IncorrectResultSizeDataAccessException e){
-
-    //   return true;
-    // }
+      }
+    }
+    return false;
   }
 
   public GreetingsEntity findByExtId(String extId){
@@ -49,7 +48,7 @@ public class GreetingsService {
   public GreetingsEntity findByName(String name){
     return greetingsRepository.findByName(name);
   }
-  public List<GreetingsEntity> findByUrl(String url){
+  public GreetingsEntity findByUrl(String url){
     return greetingsRepository.findByUrl(url);
   }
   public GreetingsEntity findByCaption(String caption){
