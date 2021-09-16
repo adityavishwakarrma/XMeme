@@ -41,20 +41,8 @@ public class GreetingsService {
       }
     }
     return false;
-  }// && 
+  }
 
-  public GreetingsEntity findByExtId(String extId){
-    return greetingsRepository.findByExtId(extId);
-  }
-  public GreetingsEntity findByName(String name){
-    return greetingsRepository.findByName(name);
-  }
-  public GreetingsEntity findByUrl(String url){
-    return greetingsRepository.findByUrl(url);
-  }
-  public GreetingsEntity findByCaption(String caption){
-    return greetingsRepository.findByCaption(caption);
-  }
 
 
 
