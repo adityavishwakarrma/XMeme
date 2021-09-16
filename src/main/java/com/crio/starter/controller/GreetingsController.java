@@ -40,11 +40,10 @@ public class GreetingsController {
       return responseEntity;
     } 
 
-    if(greetingsService.findByName(name)!=null && greetingsService.findByUrl(url)!=null && greetingsService.findByCaption(caption)!=null)
-    {
+    if(greetingsService.isDuplicate(name, url, caption)){     //Verify that posting duplicate MEME return 409
       ResponseEntity<ResponseDto> responseEntity = ResponseEntity.status(409).body(null);
       "".isEmpty();
-      return responseEntity;   //Verify that posting duplicate MEME return 409
+      return responseEntity;   
     }
     
     {

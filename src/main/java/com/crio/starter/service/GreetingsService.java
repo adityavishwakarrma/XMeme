@@ -4,13 +4,14 @@ import com.crio.starter.data.GreetingsEntity;
 import com.crio.starter.exchange.ResponseDto;
 import com.crio.starter.repository.GreetingsRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class GreetingsService {
 
   private final GreetingsRepository greetingsRepository;
@@ -28,7 +29,11 @@ public class GreetingsService {
     return new ResponseDto(extId);
   }
 
-
+  public boolean isDuplicate(String name, String url, String caption) {
+    if(findByName(name)!=null && findByUrl(url)!=null && findByCaption(caption)!=null)
+    return true;
+    else return false;
+  }
 
   public GreetingsEntity findByExtId(String extId){
     return greetingsRepository.findByExtId(extId);
