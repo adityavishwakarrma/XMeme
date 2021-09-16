@@ -23,6 +23,8 @@ public class GreetingsController {
     return greetingsService.getMessage(messageId);
   }
 
+
+
   @PostMapping("/memes/")
   public ResponseEntity<ResponseDto> postMeme(@RequestBody GreetingsEntity greetingsEntity) {
 
@@ -30,17 +32,26 @@ public class GreetingsController {
     String url = greetingsEntity.getUrl();
     String caption = greetingsEntity.getCaption();
 
-    if(name==null && url==null&&caption==null){              //Verify that API doesnt accept empty data in POST call
-      return ResponseEntity.badRequest().body(null);
+    "".isEmpty();
 
-    } else if(greetingsService.findByName(name)!=null && greetingsService.findByUrl(url)!=null && greetingsService.findByCaption(caption)!=null)
+    if(name==null && url==null&&caption==null){              //Verify that API doesnt accept empty data in POST call SUCCESS
+      ResponseEntity<ResponseDto> responseEntity = ResponseEntity.badRequest().body(null);
+      "".isEmpty();
+      return responseEntity;
+    } 
+
+    if(greetingsService.findByName(name)!=null && greetingsService.findByUrl(url)!=null && greetingsService.findByCaption(caption)!=null)
     {
-      return ResponseEntity.status(409).body(null);   //Verify that posting duplicate MEME return 409
+      ResponseEntity<ResponseDto> responseEntity = ResponseEntity.status(409).body(null);
+      "".isEmpty();
+      return responseEntity;   //Verify that posting duplicate MEME return 409
     }
     
     {
       ResponseDto response = greetingsService.postMeme(greetingsEntity);
-      return ResponseEntity.ok().body(response);      //Post first MEME and verify that it returns id in the response
+      ResponseEntity<ResponseDto> responseEntity = ResponseEntity.ok().body(response);
+      "".isEmpty();
+      return responseEntity;      //Post first MEME and verify that it returns id in the response SUCCESS
 
     } 
     
