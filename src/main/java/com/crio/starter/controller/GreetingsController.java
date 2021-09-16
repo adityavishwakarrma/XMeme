@@ -30,10 +30,10 @@ public class GreetingsController {
     String url = greetingsEntity.getUrl();
     String caption = greetingsEntity.getCaption();
 
-    if(greetingsEntity == null){              //Verify that API doesnt accept empty data in POST call
+    if(name==null && url==null&&caption==null){              //Verify that API doesnt accept empty data in POST call
       return ResponseEntity.badRequest().body(null);
 
-    } else if(greetingsService.findByName(name)!=null && greetingsService.findByUrl(url)!=null && greetingsService.findByCaption(caption)!=null ){
+    } else if(greetingsService.findByUrl(url)!=null || greetingsService.findByCaption(caption)!=null ){
       return ResponseEntity.status(409).body(null);   //Verify that posting duplicate MEME return 409
 
     } else {
