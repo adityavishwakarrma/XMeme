@@ -30,7 +30,7 @@ public class GreetingsService {
   }
 
   public boolean isDuplicate(String name, String url, String caption) {
-    if(findByName(name)!=null && findByUrl(url)!=null && findByCaption(caption)!=null)
+    if(findByName(name)!=null && findByCaption(caption)!=null)
     return true;
     else return false;
   }
