@@ -33,12 +33,13 @@ public class GreetingsController {
     if(name==null && url==null&&caption==null){              //Verify that API doesnt accept empty data in POST call
       return ResponseEntity.badRequest().body(null);
 
-    } else if(greetingsService.findByName(name)!=null || greetingsService.findByUrl(url)!=null || greetingsService.findByCaption(caption)!=null ){
-      return ResponseEntity.status(409).body(null);   //Verify that posting duplicate MEME return 409
-
-    } else {
+    } else if(greetingsService.findByUrl(url)!=null || greetingsService.findByCaption(caption)!=null) {
       ResponseDto response = greetingsService.postMeme(greetingsEntity);
       return ResponseEntity.ok().body(response);      //Post first MEME and verify that it returns id in the response
+
+    }  else {
+      return ResponseEntity.status(409).body(null);   //Verify that posting duplicate MEME return 409
+
     }
     
   }
