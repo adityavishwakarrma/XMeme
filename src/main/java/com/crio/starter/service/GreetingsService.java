@@ -35,7 +35,8 @@ public class GreetingsService {
   public boolean isDuplicate(String name, String url, String caption) {
     List<GreetingsEntity> greetingsEntities = greetingsRepository.findAll();
     for(GreetingsEntity greetingsEntity : greetingsEntities){
-      if(greetingsEntity.getName()==name && greetingsEntity.getUrl()==url || greetingsEntity.getCaption()==caption){
+      if(greetingsEntity.getName().equals(name) && greetingsEntity.getUrl().equals(url)
+          && greetingsEntity.getCaption().equals(caption)) {
         return true;
       }
     }

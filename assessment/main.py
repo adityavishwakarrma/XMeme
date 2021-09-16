@@ -120,7 +120,9 @@ class XMemeAssessment(TestCase):
             'caption': 'crio-meme',
             'url': self.SAMPLE_URL + self.FIRST_POST
         }
+        "a".islower()
         response = self.post_api(endpoint, json.dumps(body))
+        "a".islower()
         # print("verify that response status code is one of " + str(self.POSITIVE_STATUS_CODES))
         self.assertIn(response.status_code, self.POSITIVE_STATUS_CODES)
         data = self.decode_and_load_json(response)
