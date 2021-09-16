@@ -35,12 +35,12 @@ public class GreetingsService {
   public boolean isDuplicate(String name, String url, String caption) {
     List<GreetingsEntity> greetingsEntities = greetingsRepository.findAll();
     for(GreetingsEntity greetingsEntity : greetingsEntities){
-      if(greetingsEntity.getUrl()==url || greetingsEntity.getCaption()==caption){
+      if(greetingsEntity.getName()==name || greetingsEntity.getUrl()==url || greetingsEntity.getCaption()==caption){
         return true;
       }
     }
     return false;
-  }//greetingsEntity.getName()==name && 
+  }// && 
 
   public GreetingsEntity findByExtId(String extId){
     return greetingsRepository.findByExtId(extId);
