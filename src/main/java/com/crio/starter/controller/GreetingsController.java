@@ -33,7 +33,7 @@ public class GreetingsController {
     if(name==null && url==null&&caption==null){              //Verify that API doesnt accept empty data in POST call
       return ResponseEntity.badRequest().body(null);
 
-    } else if(greetingsService.findByUrl(url)==null && greetingsService.findByCaption(caption)==null) {
+    } else if(greetingsService.findByUrl(url)==null || greetingsService.findByCaption(caption)==null) {
       ResponseDto response = greetingsService.postMeme(greetingsEntity);
       return ResponseEntity.ok().body(response);      //Post first MEME and verify that it returns id in the response
 
