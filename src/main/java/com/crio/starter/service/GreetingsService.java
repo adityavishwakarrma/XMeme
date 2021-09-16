@@ -36,7 +36,7 @@ public class GreetingsService {
         return true;
       else return false;
     } catch(IncorrectResultSizeDataAccessException e){
-      return true;
+      return false;
     }
   }
 
