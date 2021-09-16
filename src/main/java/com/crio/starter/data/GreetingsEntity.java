@@ -11,6 +11,10 @@ public class GreetingsEntity {
 
   private String extId;
 
-  private String message;
+  private String name;
+
+  private String url;
+
+  private String caption;
 
 }

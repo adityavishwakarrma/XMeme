@@ -1,8 +1,12 @@
 package com.crio.starter.service;
 
+import com.crio.starter.data.GreetingsEntity;
 import com.crio.starter.exchange.ResponseDto;
 import com.crio.starter.repository.GreetingsRepository;
 import lombok.RequiredArgsConstructor;
+
+import java.util.concurrent.atomic.AtomicInteger;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,8 +14,36 @@ import org.springframework.stereotype.Service;
 public class GreetingsService {
 
   private final GreetingsRepository greetingsRepository;
+  private final AtomicInteger counter = new AtomicInteger();
 
   public ResponseDto getMessage(String id) {
-    return new ResponseDto(greetingsRepository.findByExtId(id).getMessage());
+    return new ResponseDto(greetingsRepository.findByExtId(id).getExtId());
   }
+
+
+  public ResponseDto postMeme(GreetingsEntity greetingsEntity) {
+    String extId = Integer.toString(counter.incrementAndGet());
+    greetingsEntity.setExtId(extId);
+    greetingsRepository.save(greetingsEntity);
+    return new ResponseDto(extId);
+  }
+
+
+
+  public GreetingsEntity findByExtId(String extId){
+    return greetingsRepository.findByExtId(extId);
+  }
+  public GreetingsEntity findByName(String name){
+    return greetingsRepository.findByName(name);
+  }
+  public GreetingsEntity findByUrl(String url){
+    return greetingsRepository.findByUrl(url);
+  }
+  public GreetingsEntity findByCaption(String caption){
+    return greetingsRepository.findByCaption(caption);
+  }
+
+
+
+
 }
