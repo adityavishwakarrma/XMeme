@@ -5,6 +5,7 @@ import com.crio.starter.exchange.ResponseDto;
 import com.crio.starter.repository.GreetingsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -30,16 +31,13 @@ public class GreetingsService {
   }
 
   public boolean isDuplicate(String name, String url, String caption) {
-
-   try {
-     if(findByName(name)!=null && findByUrl(url)!=null && findByCaption(caption)!=null){
+    try { 
+      if(findByName(name)!=null && findByUrl(url)!=null && findByCaption(caption)!=null)
+        return true;
+      else return false;
+    } catch(IncorrectResultSizeDataAccessException e){
       return true;
-     } else {
-       return false;
-     }
-   } catch (Exception e) {
-     return true;
-   }
+    }
   }
 
   public GreetingsEntity findByExtId(String extId){
