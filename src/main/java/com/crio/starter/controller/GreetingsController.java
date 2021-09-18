@@ -35,20 +35,17 @@ public class GreetingsController {
 
     if(name==null && url==null&&caption==null){              //Verify that API doesnt accept empty data in POST call SUCCESS
       ResponseEntity<ResponseDto> responseEntity = ResponseEntity.badRequest().body(null);
-      "".isEmpty();
       return responseEntity;
     } 
 
     if(greetingsService.isDuplicate(name, url, caption)){     //Verify that posting duplicate MEME return 409
       ResponseEntity<ResponseDto> responseEntity = ResponseEntity.status(409).body(null);
-      "".isEmpty();
       return responseEntity;   
     }
     
     {
       ResponseDto response = greetingsService.postMeme(greetingsEntity);
       ResponseEntity<ResponseDto> responseEntity = ResponseEntity.ok().body(response);
-      "".isEmpty();
       return responseEntity;      //Post first MEME and verify that it returns id in the response SUCCESS
 
     } 

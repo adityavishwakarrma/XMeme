@@ -7,7 +7,6 @@ import java.util.List;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.IncorrectResultSizeDataAccessException;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
