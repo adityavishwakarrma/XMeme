@@ -32,7 +32,6 @@ public class GreetingsController {
     String url = greetingsEntity.getUrl();
     String caption = greetingsEntity.getCaption();
 
-    "".isEmpty();
 
     if(name==null && url==null&&caption==null){              //Verify that API doesnt accept empty data in POST call SUCCESS
       ResponseEntity<ResponseDto> responseEntity = ResponseEntity.badRequest().body(null);
