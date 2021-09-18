@@ -43,13 +43,10 @@ public class GreetingsController {
       return responseEntity;   
     }
     
-    {
-      ResponseDto response = greetingsService.postMeme(greetingsEntity);
-      ResponseEntity<ResponseDto> responseEntity = ResponseEntity.ok().body(response);
-      return responseEntity;      //Post first MEME and verify that it returns id in the response SUCCESS
-
-    } 
     
+    ResponseDto response = greetingsService.postMeme(greetingsEntity);
+    ResponseEntity<ResponseDto> responseEntity = ResponseEntity.ok().body(response);
+    return responseEntity;      //Post first MEME and verify that it returns id in the response SUCCESS
 
     
   }
