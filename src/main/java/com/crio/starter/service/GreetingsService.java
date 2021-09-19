@@ -5,6 +5,7 @@ import com.crio.starter.exchange.ResponseDto;
 import com.crio.starter.repository.GreetingsRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
@@ -45,13 +46,14 @@ public class GreetingsService {
   }
 
   public List<GreetingsEntity> getMemes(){
-    List<GreetingsEntity> greetingsEntities =new ArrayList<>(greetingsRepository.findAll());
-
+    List<GreetingsEntity> greetingsEntities = new ArrayList<>(greetingsRepository.findAll());
+    Collections.reverse(greetingsEntities);   //reverse
+    int size = greetingsEntities.size();
     // get
     // When run with empty database, get calls should return success, and response should be empty
-    if(greetingsEntities.size() == 0){
+    if(size == 0){
       return new ArrayList<>();
-    } else if(greetingsEntities.size() <= 100){
+    } else if(size <= 100){
       return greetingsEntities;  //Insert 50 MEMEs and try accessing them to confirm that all of them are returned back  
     } else {
       List<GreetingsEntity> greetingsEntities2 = greetingsEntities.subList(0, 100);
