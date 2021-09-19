@@ -50,10 +50,8 @@ public class GreetingsService {
     // get
     // When run with empty database, get calls should return success, and response should be empty
     if(greetingsEntities.size() == 0){
-      return null;
-    }
-
-    if(greetingsEntities.size() <= 100){
+      return new ArrayList<>();
+    } else if(greetingsEntities.size() <= 100){
       return greetingsEntities;  //Insert 50 MEMEs and try accessing them to confirm that all of them are returned back  
     } else {
       List<GreetingsEntity> greetingsEntities2 = greetingsEntities.subList(0, 100);
