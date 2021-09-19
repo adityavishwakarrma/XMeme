@@ -3,6 +3,8 @@ package com.crio.starter.service;
 import com.crio.starter.data.GreetingsEntity;
 import com.crio.starter.exchange.ResponseDto;
 import com.crio.starter.repository.GreetingsRepository;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
@@ -42,7 +44,23 @@ public class GreetingsService {
     return false;
   }
 
+  public List<GreetingsEntity> getMemes(){
+    List<GreetingsEntity> greetingsEntities =new ArrayList<>(greetingsRepository.findAll());
 
+    // get
+    // When run with empty database, get calls should return success, and response should be empty
+    if(greetingsEntities.size() == 0){
+      return null;
+    }
+
+    if(greetingsEntities.size() <= 100){
+      return greetingsEntities;  //Insert 50 MEMEs and try accessing them to confirm that all of them are returned back  
+    } else {
+      List<GreetingsEntity> greetingsEntities2 = greetingsEntities.subList(0, 100);
+      return greetingsEntities2;  //Post more than 100 MEME, make a GET call and ensure that it returns only latest 100 MEME
+    }
+    
+  }
 
 
 
