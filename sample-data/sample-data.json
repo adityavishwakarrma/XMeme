@@ -1,10 +1,14 @@
 [
   {
     "extId": "001",
-    "message": "Hello world"
+    "name":"this is a name",
+    "caption": "Hello world",
+    "url":"this is a url"
   },
   {
     "extId": "002",
-    "message": "This is second message"
+    "name":"this is a name",
+    "caption": "This is second message",
+    "url":"this is a url"
   }
 ]

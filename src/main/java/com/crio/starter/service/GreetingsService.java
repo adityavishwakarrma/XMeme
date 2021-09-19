@@ -63,5 +63,10 @@ public class GreetingsService {
   }
 
 
+  public GreetingsEntity getMemeById(String extId) {
+    return greetingsRepository.findByExtId(extId);
+  }
+
+
 
 }

@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,6 +61,19 @@ public class GreetingsController {
     List<GreetingsEntity> greetingsEntities = greetingsService.getMemes();
 
     return ResponseEntity.ok(greetingsEntities);
+  }
+
+
+  @GetMapping("/memes/{id}")
+  public ResponseEntity<GreetingsEntity> getMemeById(@PathVariable String id) {
+    GreetingsEntity greetingsEntity = greetingsService.getMemeById(id);
+
+    if(greetingsEntity == null) {  //Try to access MEME with some random id, and verify that it returns 404
+      return ResponseEntity.status(404).body(null);
+    }
+
+    return ResponseEntity.ok(greetingsEntity);  // Post a new MEME, capture its Id, and verify its GET /meme/{id} returns correct MEME
+
   }
 
 }
